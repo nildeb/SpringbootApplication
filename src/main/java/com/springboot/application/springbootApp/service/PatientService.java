@@ -7,4 +7,6 @@ import java.util.List;
 public interface PatientService {
 
     List<PatientRecord> findAllRecords();
+
+    PatientRecord findPatientById( long patientId);
 }

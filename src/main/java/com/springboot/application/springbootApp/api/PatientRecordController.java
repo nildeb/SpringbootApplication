@@ -35,8 +35,12 @@ public class PatientRecordController {
     }
 
     @GetMapping(value = "{patientId}")
-    public PatientRecord getPatientById(@PathVariable(value="patientId") Long patientId) {
-        return patientRecordRepository.findById(patientId).get();
+    public ResponseEntity<Response>  getPatientById(@PathVariable(value="patientId") Long patientId) {
+        Response <PatientRecord>response=new Response<>();
+        PatientRecord patientRecord =patientService.findPatientById(patientId);
+        response.setResult(patientRecord);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
     @PostMapping
     public PatientRecord createRecord(@RequestBody @Valid PatientRecord patientRecord) {
